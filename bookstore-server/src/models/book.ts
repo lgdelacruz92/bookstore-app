@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface Book extends Document {
+export interface BookDocument extends Document {
   title: string;
   author: string;
   details: string;
@@ -15,4 +15,4 @@ const BookSchema: Schema = new Schema({
   details: { type: String, required: true },
 });
 
-export default mongoose.model<Book>("Book", BookSchema);
+export default mongoose.model<BookDocument>("BookDocument", BookSchema);

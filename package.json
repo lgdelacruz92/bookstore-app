@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "workspaces": [
+      "bookstore-server",
+      "bookstore-ui",
+      "bookstore-shared"
+    ]
+  }
+  
