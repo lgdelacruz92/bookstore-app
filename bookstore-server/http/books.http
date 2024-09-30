@@ -23,8 +23,7 @@ Content-Type: application/json
 {
   "title": "Book 5",
   "author": "Author 5",
-  "details": "Details 5",
-  "imgUrl": "http://localimage"
+  "details": "Details 5"
 }
 
 ### PUT Book

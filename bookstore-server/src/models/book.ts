@@ -10,7 +10,7 @@ const BookSchema: Schema = new Schema({
     required: true,
   },
   details: { type: String, required: true },
-  imgUrl: { type: String, required: true },
+  imgUrl: { type: String, required: false },
 });
 
 export default mongoose.model<BookDocument>("BookDocument", BookSchema);

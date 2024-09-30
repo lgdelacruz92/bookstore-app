@@ -2,6 +2,11 @@
 import { Request, Response } from "express";
 import Book from "../models/book";
 
+const scheme = process.env.SCHEME;
+const domain = process.env.DOMAIN;
+const port = process.env.PORT;
+const API_URL = `${scheme}://${domain}:${port}`;
+
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
     const books = await Book.find();
@@ -13,6 +18,9 @@ export const getAllBooks = async (req: Request, res: Response) => {
 
 export const createBook = async (req: Request, res: Response) => {
   try {
+    if (!req.body.imgUrl) {
+      req.body.imgUrl = `${API_URL}/images/book-cover-placeholder.jpg`;
+    }
     const newBook = new Book(req.body);
     const savedBook = await newBook.save();
     res.status(201).json(savedBook);
