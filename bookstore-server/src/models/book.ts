@@ -1,10 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { Book } from "bookstore-shared";
 
-export interface BookDocument extends Document {
-  title: string;
-  author: string;
-  details: string;
-}
+export interface BookDocument extends Book, Document {}
 
 const BookSchema: Schema = new Schema({
   title: { type: String, required: true },
@@ -13,6 +10,7 @@ const BookSchema: Schema = new Schema({
     required: true,
   },
   details: { type: String, required: true },
+  imgUrl: { type: String, required: true },
 });
 
 export default mongoose.model<BookDocument>("BookDocument", BookSchema);
