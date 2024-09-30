@@ -1,0 +1,9 @@
+{
+    "local": {
+      "baseUrl": "http://localhost:3000"
+    },
+    "production": {
+      "baseUrl": ""
+    }
+  }
+  

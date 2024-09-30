@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:4000
+
+### GET Books
+GET {{baseUrl}}/books
+
+### GET 
+# Find book by paramater
+@author = Author
+GET {{baseUrl}}/books/search?author={{author}}
+
+### Find book by tile
+@title = Book 1
+GET {{baseUrl}}/books/search?title={{title}}
+
+### Find book by id
+GET {{baseUrl}}/books/66f94efcec8012ccda9c97c5
+
+
+### POST Book
+POST {{baseUrl}}/books
+Content-Type: application/json
+
+{
+  "title": "Book 5",
+  "author": "Author 5",
+  "details": "Details 5"
+}
+
+### PUT Book
+# Update a book
+PUT {{baseUrl}}/books/update
+Content-Type: application/json
+
+{
+  "bookId": "66f80e48b4e1e90c0bca6bd3",
+  "props": {
+    "title": "Book 13"
+  }
+}
+
+### Delete Book by id
+DELETE {{baseUrl}}/books/66f94efcec8012ccda9c97c8
