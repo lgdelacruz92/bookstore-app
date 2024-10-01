@@ -1,14 +1,6 @@
 import { MongoClient } from "mongodb";
-import * as dotenv from "dotenv";
-dotenv.config();
+import { defaultImgURL, dbURI, dbName } from "../index";
 
-const scheme = process.env.SCHEME;
-const domain = process.env.DOMAIN;
-const port = process.env.PORT;
-// Define the MongoDB URI and Database Name
-const dbName = "bookstore"; // Replace with your actual database name
-const dbURI = `mongodb+srv://Cluster30875:${process.env.MONGOOSE_PASSWORD}@cluster30875.fp5ca.mongodb.net/?retryWrites=true&w=majority&appName=Cluster30875`;
-const defaultImgURL = `${scheme}://${domain}:${port}/images/book-cover-placeholder.jpg`;
 // Seed data for books
 const books = [
   {

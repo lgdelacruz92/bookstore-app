@@ -9,7 +9,6 @@ const Books = () => {
         return res.json();
       })
       .then((responseJson) => {
-        console.log(responseJson);
         setBooks(responseJson);
       })
       .catch((err) => {
@@ -17,12 +16,14 @@ const Books = () => {
       });
   }, []);
   return (
-    <div id="books-list" className="grid grid-cols-4 gap-4">
-      {books.map((item: { title: string }, i: number) => {
-        return (
-          <BookListItem key={`${item.title}-${i}`}>{item.title}</BookListItem>
-        );
-      })}
+    <div id="books-list" className="container mx-auto">
+      <div className="grid grid-cols-4 gap-4">
+        {books.map((item: Book, i: number) => {
+          return (
+            <BookListItem key={`${item.title}-${i}`} book={item}></BookListItem>
+          );
+        })}
+      </div>
     </div>
   );
 };
