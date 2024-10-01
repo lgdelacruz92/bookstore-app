@@ -6,14 +6,35 @@ const scheme = process.env.SCHEME;
 const domain = process.env.DOMAIN;
 const port = process.env.PORT;
 const API_URL = `${scheme}://${domain}:${port}`;
+const defaultLimit = 10;
 
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
+    // Extract query parameters for pagination and search
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const limit = parseInt(req.query.limit as string) || defaultLimit;
     const skip = (page - 1) * limit;
-    const books = await Book.find().skip(skip).limit(limit);
-    const totalBooks = await Book.countDocuments();
+    const search = req.query.search as string;
+
+    let filter = {};
+
+    // If search query exists, build a regex filter for title, author, or details
+    if (search) {
+      const regex = new RegExp(search, "i"); // 'i' for case-insensitive
+      filter = {
+        $or: [
+          { title: { $regex: regex } },
+          { author: { $regex: regex } },
+          { details: { $regex: regex } },
+        ],
+      };
+    }
+
+    // Fetch books with pagination and optional search filter
+    const books = await Book.find(filter).skip(skip).limit(limit);
+    const totalBooks = await Book.countDocuments(filter); // Count total filtered books
+
+    // Respond with paginated and filtered book data
     res.json({
       totalBooks,
       totalPages: Math.ceil(totalBooks / limit),
@@ -21,7 +42,9 @@ export const getAllBooks = async (req: Request, res: Response) => {
       books,
     });
   } catch (error) {
-    res.status(500).json({ error: "Unable to fetch books" });
+    res
+      .status(500)
+      .json({ error: "Unable to fetch books", message: `${error}` });
   }
 };
 
@@ -37,31 +60,6 @@ export const createBook = async (req: Request, res: Response) => {
     res
       .status(400)
       .json({ error: "Unable to create book", message: JSON.stringify(error) });
-  }
-};
-
-export const queryBook = async (req: Request, res: Response) => {
-  try {
-    const { search } = req.query;
-    let filter: any = {};
-
-    // If search query is provided, apply regex to search across multiple fields
-    if (search) {
-      const regex = new RegExp(search as string, "i"); // 'i' for case-insensitive matching
-      filter = {
-        $or: [
-          { title: { $regex: regex } },
-          { author: { $regex: regex } },
-          { details: { $regex: regex } },
-        ],
-      };
-    }
-    const books = await Book.find(filter);
-    res.json(books);
-  } catch (err) {
-    res
-      .status(404)
-      .json({ error: "Book not found", message: JSON.stringify(err) });
   }
 };
 

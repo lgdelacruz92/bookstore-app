@@ -2,7 +2,6 @@ import { Router } from "express";
 import {
   getAllBooks,
   createBook,
-  queryBook,
   updateBook,
   deleteBook,
   findBookById,
@@ -11,7 +10,6 @@ import {
 const router = Router();
 
 router.get("/", getAllBooks);
-router.get("/search", queryBook);
 router.get("/:bookId", findBookById);
 
 router.post("/", createBook);

@@ -1,5 +1,4 @@
 import { Book } from "bookstore-shared";
-import { transform } from "typescript";
 
 interface BookListItemProps {
   book: Book;
