@@ -21,7 +21,7 @@ export const BookListItem = ({ book, ...rest }: BookListItemProps) => {
       className="bg-slate-500 h-[300px] rounded-lg"
       style={backgroundImageStyle}
     >
-      <div className="bg-gray-300 h-[45%]">
+      <div className="bg-gray-300 p-2 bg-opacity-30">
         <div className="font-bold text-xl text-slate-800 pt-4">{title}</div>
         <div className="font-bold italic text-slate-700 mt-2">{author}</div>
         <div className="mt-2 pb-2 text-slate-800">{details}</div>
