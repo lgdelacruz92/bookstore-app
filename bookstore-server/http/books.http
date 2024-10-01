@@ -5,8 +5,8 @@ GET {{baseUrl}}/books
 
 ### GET 
 # Find book by paramater
-@author = Author
-GET {{baseUrl}}/books/search?author={{author}}
+@search = work
+GET {{baseUrl}}/books/search?search={{search}}
 
 ### Find book by tile
 @title = Book 1

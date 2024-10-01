@@ -42,7 +42,21 @@ export const createBook = async (req: Request, res: Response) => {
 
 export const queryBook = async (req: Request, res: Response) => {
   try {
-    const books = await Book.find({ ...req.query });
+    const { search } = req.query;
+    let filter: any = {};
+
+    // If search query is provided, apply regex to search across multiple fields
+    if (search) {
+      const regex = new RegExp(search as string, "i"); // 'i' for case-insensitive matching
+      filter = {
+        $or: [
+          { title: { $regex: regex } },
+          { author: { $regex: regex } },
+          { details: { $regex: regex } },
+        ],
+      };
+    }
+    const books = await Book.find(filter);
     res.json(books);
   } catch (err) {
     res
