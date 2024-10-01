@@ -17,7 +17,7 @@ const Books = () => {
   }, []);
   return (
     <div id="books-list" className="container mx-auto">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-6 gap-4">
         {booksData?.books.map((item: Book, i: number) => {
           return (
             <BookListItem key={`${item.title}-${i}`} book={item}></BookListItem>

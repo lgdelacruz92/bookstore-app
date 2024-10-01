@@ -10,7 +10,7 @@ const API_URL = `${scheme}://${domain}:${port}`;
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 25;
+    const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
     const books = await Book.find().skip(skip).limit(limit);
     const totalBooks = await Book.countDocuments();
