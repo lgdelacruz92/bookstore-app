@@ -22,7 +22,8 @@ app.use(
   })
 );
 
-const dbURI = `mongodb+srv://Cluster30875:${process.env.MONGOOSE_PASSWORD}@cluster30875.fp5ca.mongodb.net/?retryWrites=true&w=majority&appName=Cluster30875`;
+const tableName = "bookstore";
+const dbURI = `mongodb+srv://Cluster30875:${process.env.MONGOOSE_PASSWORD}@cluster30875.fp5ca.mongodb.net/${tableName}?retryWrites=true&w=majority&appName=Cluster30875`;
 // Connect to MongoDB
 mongoose
   .connect(dbURI, {})
@@ -33,5 +34,5 @@ app.use(express.json());
 app.use("/books", bookRoutes);
 
 app.listen(port, () => {
-  console.log(`Server is running at ${scheme}:/${domain}/:${port}`);
+  console.log(`Server is running at ${scheme}://${domain}:${port}`);
 });

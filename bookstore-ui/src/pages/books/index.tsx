@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { BookListItem } from "./components/bookListItem";
+import { Book } from "bookstore-shared";
 const Books = () => {
-  const [books, setBooks] = useState<any>([]);
+  const [books, setBooks] = useState<Array<Book>>([]);
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/books`)
       .then((res) => {

@@ -21,7 +21,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "seed": "tsc db/seeds/bookDocument.seed.ts && node db/seeds/bookDocument.seed.js"
   },
   "keywords": [],
   "author": "",
