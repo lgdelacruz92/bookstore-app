@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { BookListItem } from "./components/bookListItem";
-import { Book } from "bookstore-shared";
+import { Books as BooksData, Book } from "bookstore-shared";
 const Books = () => {
-  const [books, setBooks] = useState<Array<Book>>([]);
+  const [booksData, setBookData] = useState<BooksData>();
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/books`)
       .then((res) => {
         return res.json();
       })
       .then((responseJson) => {
-        setBooks(responseJson);
+        setBookData(responseJson);
       })
       .catch((err) => {
         console.log(err);
@@ -18,7 +18,7 @@ const Books = () => {
   return (
     <div id="books-list" className="container mx-auto">
       <div className="grid grid-cols-4 gap-4">
-        {books.map((item: Book, i: number) => {
+        {booksData?.books.map((item: Book, i: number) => {
           return (
             <BookListItem key={`${item.title}-${i}`} book={item}></BookListItem>
           );
