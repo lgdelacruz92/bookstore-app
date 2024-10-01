@@ -39,4 +39,4 @@ Content-Type: application/json
 }
 
 ### Delete Book by id
-DELETE {{baseUrl}}/books/66f94efcec8012ccda9c97c8
+DELETE {{baseUrl}}/books/66fbc548700e5568b2e321ef

@@ -1,37 +1,6 @@
 import { MongoClient } from "mongodb";
-import { defaultImgURL, dbURI, dbName } from "../index";
-
-// Seed data for books
-const books = [
-  {
-    title: "The Great Gatsby",
-    author: "F. Scott Fitzgerald",
-    description:
-      "A novel set in the Jazz Age that explores themes of wealth, class, and love.",
-    imgUrl: defaultImgURL,
-  },
-  {
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    description:
-      "A novel about racial injustice in the Deep South, told through the eyes of a young girl.",
-    imgUrl: defaultImgURL,
-  },
-  {
-    title: "1984",
-    author: "George Orwell",
-    description:
-      "A dystopian novel that delves into the dangers of totalitarianism and extreme political ideology.",
-    imgUrl: defaultImgURL,
-  },
-  {
-    title: "Moby-Dick",
-    author: "Herman Melville",
-    description:
-      "The saga of Captain Ahab and his obsessive quest to catch the white whale, Moby-Dick.",
-    imgUrl: defaultImgURL,
-  },
-];
+import { dbURI, dbName } from "../index";
+import { getBooks } from "./books";
 
 // Function to seed books into the database
 async function seedBooks() {
@@ -40,12 +9,25 @@ async function seedBooks() {
   try {
     // Connect to the MongoDB server
     await client.connect();
-    console.log("Connected to MongoDB");
+    const adminDb = client.db().admin();
+
+    // Check if the database exists by listing all databases
+    const { databases } = await adminDb.listDatabases();
+    const dbExists = databases.some((db: any) => db.name === dbName);
+
+    if (dbExists) {
+      // Drop the database if it exists
+      await client.db(dbName).dropDatabase();
+      console.log(`Database ${dbName} dropped`);
+    } else {
+      console.log(`Database ${dbName} does not exist, proceeding with seeding`);
+    }
 
     const database = client.db(dbName);
     const collection = database.collection("bookdocuments"); // Use your collection name
 
     // Insert the seed data into the collection
+    const books = await getBooks();
     const result = await collection.insertMany(books);
     console.log(`${result.insertedCount} books inserted into the collection`);
   } catch (error) {
