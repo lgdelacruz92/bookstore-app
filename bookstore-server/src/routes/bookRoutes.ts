@@ -6,14 +6,15 @@ import {
   deleteBook,
   findBookById,
 } from "../controllers/bookController";
+import { verifyTokenMiddleware } from "../middlewares/verifyToken";
 
 const router = Router();
 
-router.get("/", getAllBooks);
-router.get("/:bookId", findBookById);
+router.get("/", verifyTokenMiddleware, getAllBooks);
+router.get("/:bookId", verifyTokenMiddleware, findBookById);
 
-router.post("/", createBook);
-router.put("/update", updateBook);
-router.delete("/:bookId", deleteBook);
+router.post("/", verifyTokenMiddleware, createBook);
+router.put("/update", verifyTokenMiddleware, updateBook);
+router.delete("/:bookId", verifyTokenMiddleware, deleteBook);
 
 export default router;

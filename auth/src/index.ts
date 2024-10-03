@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4001;
 app.use(express.json());
 
 // Define the /verify-token endpoint
-app.get("/verify-token", async (req: Request, res: Response) => {
+app.post("/verify-token", async (req: Request, res: Response) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
     res.status(401).json({ message: "No token provided" });

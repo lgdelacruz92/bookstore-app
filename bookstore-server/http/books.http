@@ -1,24 +1,32 @@
 @baseUrl = http://localhost:4000
-
+@token = eyJhbGciOiJSUzI1NiIsImtpZCI6IjhkNzU2OWQyODJkNWM1Mzk5MmNiYWZjZWI2NjBlYmQ0Y2E1OTMxM2EiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiTGVzdGVyIERlbGEgQ3J1eiIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMV2Y1WFBPVVYzdVlNX01XZnFnVFM5LVpXMG9kVW1NTDZlY3FPcUJ4ck1oNE40WlE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbGVzdGVyLW1pbm5pY2stMjVkMmQiLCJhdWQiOiJsZXN0ZXItbWlubmljay0yNWQyZCIsImF1dGhfdGltZSI6MTcyNzk3MDA2NSwidXNlcl9pZCI6IjhtOE1oWUtiamNabTU3QkxqREF5NTZlcE1PRDMiLCJzdWIiOiI4bThNaFlLYmpjWm01N0JMakRBeTU2ZXBNT0QzIiwiaWF0IjoxNzI3OTcwMDY1LCJleHAiOjE3Mjc5NzM2NjUsImVtYWlsIjoibGdkZWxhY3J1ejkyQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTA4MTIyNjUzMDAzMDQyOTA4MTU2Il0sImVtYWlsIjpbImxnZGVsYWNydXo5MkBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.InvC-dvBO0LITb8_AjJe1mSRCIPM9dP6CwWbfavhcTLCJo6_fSktDY_JzZZU_eAg8cZ5IUC6DRE2aCSR3OIarvFyURhX_yi-S_9dVQ6uSFe7BpI4o_VTux3BxBEUfeQsa6kwYzNRLueASq551Yo_YkVKPGFbo-ZWvaxCB-3fMAxTiFQOEyYEyaWg7CHoI94cKz4mMo6sSs3jUm0ab6KRpWLyyNgCwRyFyOi9ev4m9i2nK0BwCD0wE0Aa0E5rEjHdAX1qrD4YECtT7lEbJLz81sRnV3lkhnvi9uDlzsP9uHaFVy9mAT2jsn8u-v8aAR0abC6_J7Jju9dn-psoYwJgMA
 ### GET Books
 GET {{baseUrl}}/books
+Authorization: Bearer {{token}}
 
 ### GET 
 # Find book by paramater
 @search = al
 GET {{baseUrl}}/books?search={{search}}
+Authorization: Bearer {{token}}
+
 
 ### Find book by tile
 @title = Book 1
 GET {{baseUrl}}/books/search?title={{title}}
+Authorization: Bearer {{token}}
+
 
 ### Find book by id
 GET {{baseUrl}}/books/66f94efcec8012ccda9c97c5
+Authorization: Bearer {{token}}
 
 
 ### POST Book
 POST {{baseUrl}}/books
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
 
 {
   "title": "Book 5",
@@ -30,6 +38,8 @@ Content-Type: application/json
 # Update a book
 PUT {{baseUrl}}/books/update
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
 
 {
   "bookId": "66f80e48b4e1e90c0bca6bd3",
@@ -40,3 +50,4 @@ Content-Type: application/json
 
 ### Delete Book by id
 DELETE {{baseUrl}}/books/66fbc548700e5568b2e321ef
+Authorization: Bearer {{token}}
