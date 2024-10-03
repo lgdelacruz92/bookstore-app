@@ -3,7 +3,8 @@
     "workspaces": [
         "bookstore-server",
         "bookstore-ui",
-        "bookstore-shared"
+        "bookstore-shared",
+        "bookstore-users"
     ],
     "dependencies": {
         "express": "^4.21.0",

@@ -1,7 +1,12 @@
 {
-  "name": "bookstore-server",
+  "name": "bookstore-users",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon src/index.ts"
+  },
   "dependencies": {
     "axios": "^1.7.7",
     "bookstore-shared": "1.0.0",
@@ -19,13 +24,6 @@
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
-  },
-  "scripts": {
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "dev": "nodemon src/index.ts",
-    "seed": "tsc db/seeds/bookDocument.seed.ts && node db/seeds/bookDocument.seed.js",
-    "migrate": "tsc db/migrations/migrate.ts && node db/migrations/migrate.js"
   },
   "keywords": [],
   "author": "",
