@@ -67,7 +67,7 @@ const Books = () => {
       </TextField.Root>
 
       <div className="grid grid-cols-6 gap-4">
-        {booksData?.books.map((item: Book, i: number) => {
+        {booksData?.books?.map((item: Book, i: number) => {
           return (
             <BookListItem key={`${item.title}-${i}`} book={item}></BookListItem>
           );

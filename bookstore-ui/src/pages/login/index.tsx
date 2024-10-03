@@ -11,10 +11,9 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const token = await result.user.getIdToken(); // Get the Firebase token
-      localStorage.setItem("token", token); // Store token in localStorage
+      const token = await result.user.getIdToken();
+      localStorage.setItem("token", token);
 
-      // Navigate to the /books route after login
       navigate("/books");
     } catch (error) {
       console.error("Login Error:", error);
