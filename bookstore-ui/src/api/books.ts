@@ -1,4 +1,4 @@
-const booksUrl = `${process.env.REACT_APP_API_URL}/books`;
+const booksUrl = `${process.env.REACT_APP_BOOK_API_URL}/books`;
 
 export type BookRequestType = {
   search?: string;

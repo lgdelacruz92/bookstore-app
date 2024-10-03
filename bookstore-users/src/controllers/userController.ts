@@ -3,7 +3,6 @@ import User from "../models/user";
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
     const newUser = new User(req.body);
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
@@ -17,8 +16,11 @@ export const createUser = async (req: Request, res: Response) => {
 export const findUserById = async (req: Request, res: Response) => {
   const { user_id } = req.params;
   try {
-    const book = await User.findOne({ uid: user_id });
-    res.json(book);
+    const user = await User.findOne({ uid: user_id });
+    if (!user) {
+      throw Error("User not found");
+    }
+    res.json(user);
   } catch (err) {
     res
       .status(404)
