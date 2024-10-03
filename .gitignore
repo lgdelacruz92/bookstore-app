@@ -25,3 +25,4 @@ yarn-error.log*
 node_modules/
 *.migration.js
 *.seed.js
+bookstoreAccountKey.json
