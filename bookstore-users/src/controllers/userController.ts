@@ -13,3 +13,15 @@ export const createUser = async (req: Request, res: Response) => {
       .json({ error: "Unable to create book", message: JSON.stringify(error) });
   }
 };
+
+export const findUserById = async (req: Request, res: Response) => {
+  const { user_id } = req.params;
+  try {
+    const book = await User.findOne({ uid: user_id });
+    res.json(book);
+  } catch (err) {
+    res
+      .status(404)
+      .json({ error: "User not found", message: JSON.stringify(err) });
+  }
+};

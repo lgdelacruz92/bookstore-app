@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:4002
 ### GET Books
-POST {{baseUrl}}/users
+POST {{baseUrl}}/users/create
 Content-Type: application/json
 
 {
@@ -8,3 +8,7 @@ Content-Type: application/json
     "email": "email@gada.com",
     "name": "Lester 1"
 }
+
+###
+@userid = 123
+GET {{baseUrl}}/users/{{userid}}
