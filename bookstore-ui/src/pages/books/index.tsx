@@ -3,15 +3,14 @@ import { BookListItem } from "./components/bookListItem";
 import { Books as BooksData, Book } from "bookstore-shared";
 import { TextField } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { getBooks } from "src/api/books";
 const Books = () => {
   const [booksData, setBookData] = useState<BooksData>();
   const [search, setSearch] = useState<string>("");
 
   const onSearch = (search: string) => {
-    const urlParams = new URLSearchParams();
-    urlParams.set("search", `${search}`);
     setSearch(search);
-    fetch(`${process.env.REACT_APP_API_URL}/books?${urlParams.toString()}`)
+    getBooks({ search })
       .then((res) => {
         return res.json();
       })
@@ -24,10 +23,7 @@ const Books = () => {
   };
 
   const onPageClick = (page: number) => {
-    const urlParams = new URLSearchParams();
-    urlParams.set("page", `${page}`);
-    urlParams.set("search", search);
-    fetch(`${process.env.REACT_APP_API_URL}/books?${urlParams.toString()}`)
+    getBooks({ search, page: `${page}` })
       .then((res) => {
         return res.json();
       })
@@ -40,7 +36,7 @@ const Books = () => {
   };
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/books`)
+    getBooks({})
       .then((res) => {
         return res.json();
       })
