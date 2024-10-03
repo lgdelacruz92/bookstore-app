@@ -3,7 +3,7 @@ import express, { Request, Response } from "express";
 import admin from "./firebaseAdmin";
 
 const app = express();
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 5001;
 
 app.use(express.json());
 

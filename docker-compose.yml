@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  # React app (bookstore-ui)
+  bookstore-ui:
+    build: ./bookstore-ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - bookstore-auth
+      - bookstore-users
+      - bookstore-books
+    networks:
+      - bookstore-network
+    env_file:
+      - ./bookstore-ui/.env # Use env file if needed for bookstore-ui
+
+  # Auth service (bookstore-auth)
+  bookstore-auth:
+    build: ./bookstore-auth
+    ports:
+      - "5001:5001"
+    networks:
+      - bookstore-network
+    env_file:
+      - ./bookstore-auth/.env
+    volumes:
+      - ./bookstore-auth/serviceAccountKey.json:/app/serviceAccountKey.json
+
+  # Users service (bookstore-users)
+  bookstore-users:
+    build: ./bookstore-users
+    ports:
+      - "5002:5002"
+    networks:
+      - bookstore-network
+    env_file:
+      - ./bookstore-users/.env
+    volumes:
+      - ./bookstore-users/serviceAccountKey.json:/app/serviceAccountKey.json
+
+  # Books service (bookstore-books)
+  bookstore-books:
+    build: ./bookstore-books
+    ports:
+      - "5003:5003"
+    networks:
+      - bookstore-network
+    env_file:
+      - ./bookstore-books/.env
+    volumes:
+      - ./bookstore-books/serviceAccountKey.json:/app/serviceAccountKey.json
+
+networks:
+  bookstore-network:
+    driver: bridge
