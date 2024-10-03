@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "bookstore-shared/*": ["../bookstore-shared/*"],
+      "bookstore-shared/*": ["/app/bookstore-shared/*"],
       "@services/*": ["./src/services/*"],
       "@pages/*": ["./src/pages/*"],
       "@components/*": ["./src/components/*"]

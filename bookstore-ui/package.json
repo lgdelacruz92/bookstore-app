@@ -14,7 +14,7 @@
     "@types/node": "^16.18.112",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
-    "bookstore-shared": "1.0.0",
+    "bookstore-shared": "file:/app/bookstore-shared",
     "craco-alias": "^3.0.1",
     "firebase": "^10.14.0",
     "react": "^18.3.1",

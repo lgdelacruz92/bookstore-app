@@ -14,6 +14,8 @@ services:
       - bookstore-network
     env_file:
       - ./bookstore-ui/.env # Use env file if needed for bookstore-ui
+    volumes:
+      - ../bookstore-shared:/app/bookstore-shared
 
   # Auth service (bookstore-auth)
   bookstore-auth:
@@ -22,10 +24,9 @@ services:
       - "5001:5001"
     networks:
       - bookstore-network
-    env_file:
-      - ./bookstore-auth/.env
     volumes:
       - ./bookstore-auth/serviceAccountKey.json:/app/serviceAccountKey.json
+      - ../bookstore-shared:/app/bookstore-shared
 
   # Users service (bookstore-users)
   bookstore-users:
@@ -37,7 +38,7 @@ services:
     env_file:
       - ./bookstore-users/.env
     volumes:
-      - ./bookstore-users/serviceAccountKey.json:/app/serviceAccountKey.json
+      - ../bookstore-shared:/app/bookstore-shared
 
   # Books service (bookstore-books)
   bookstore-books:
@@ -49,7 +50,7 @@ services:
     env_file:
       - ./bookstore-books/.env
     volumes:
-      - ./bookstore-books/serviceAccountKey.json:/app/serviceAccountKey.json
+      - ../bookstore-shared:/app/bookstore-shared
 
 networks:
   bookstore-network:
