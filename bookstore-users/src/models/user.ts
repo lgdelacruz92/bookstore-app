@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { User } from "bookstore-shared";
+import { User } from "../types/user";
 
 export interface UserDocument extends User, Document {}
 

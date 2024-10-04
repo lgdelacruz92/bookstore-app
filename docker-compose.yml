@@ -36,8 +36,6 @@ services:
       - bookstore-network
     env_file:
       - ./bookstore-users/.env
-    volumes:
-      - ./bookstore-shared:/app/bookstore-shared
 
   # Books service (bookstore-books)
   bookstore-books:
@@ -48,8 +46,6 @@ services:
       - bookstore-network
     env_file:
       - ./bookstore-books/.env
-    volumes:
-      - ./bookstore-shared:/app/bookstore-shared
 
 networks:
   bookstore-network:

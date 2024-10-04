@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { Book } from "bookstore-shared";
+import { Book } from "../types/book";
 
 export interface BookDocument extends Book, Document {}
 
