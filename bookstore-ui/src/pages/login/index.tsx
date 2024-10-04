@@ -37,8 +37,16 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
-      <button onClick={handleLogin}>Login with Google</button>
+      <div className="inline-block bg-eggshell shadow-lg mx-auto mt-8 rounded border-2 border-solid border-gray-300 px-8 py-8">
+        <h1 className="text-2xl font-extrabold text-slate-900">Login</h1>
+        <button
+          className="font-semibold text-slate-900 shadow-sm border-2 border-solid border-slate-900 rounded-2xl px-4 mt-4"
+          onClick={handleLogin}
+        >
+          Login with Google
+        </button>
+      </div>
+      <div className="mt-8 text-sm">Login with your gmail account</div>
     </div>
   );
 };
