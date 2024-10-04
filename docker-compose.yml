@@ -16,7 +16,6 @@ services:
       - ./bookstore-ui/.env # Use env file if needed for bookstore-ui
     volumes:
       - ./bookstore-ui:/app
-      - ./bookstore-shared:/app/bookstore-shared
 
   # Auth service (bookstore-auth)
   bookstore-auth:
@@ -27,7 +26,6 @@ services:
       - bookstore-network
     volumes:
       - ./bookstore-auth/serviceAccountKey.json:/app/serviceAccountKey.json
-      - ./bookstore-shared:/app/bookstore-shared
 
   # Users service (bookstore-users)
   bookstore-users:
