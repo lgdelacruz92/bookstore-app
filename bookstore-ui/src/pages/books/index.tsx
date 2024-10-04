@@ -6,6 +6,7 @@ import { TextField } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { getBooks } from "src/api/books";
 import { useNavigate } from "react-router-dom";
+import Tooltip from "../../components/tooltip";
 const Books = () => {
   const [booksData, setBookData] = useState<BooksData>();
   const [search, setSearch] = useState<string>("");
@@ -58,21 +59,23 @@ const Books = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <div id="books-list" className="container mx-auto">
-      <TextField.Root
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          onSearch(e.target.value);
-        }}
-        className="my-4"
-        placeholder="Search the docs…"
-      >
-        <TextField.Slot>
-          <MagnifyingGlassIcon height="16" width="16" />
-        </TextField.Slot>
-      </TextField.Root>
+      <Tooltip message="Type search filter">
+        <TextField.Root
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            onSearch(e.target.value);
+          }}
+          className="my-4"
+          placeholder="Search the books..."
+        >
+          <TextField.Slot>
+            <MagnifyingGlassIcon height="16" width="16" />
+          </TextField.Slot>
+        </TextField.Root>
+      </Tooltip>
 
       <div className="grid grid-cols-6 gap-4">
         {booksData?.books?.map((item: Book, i: number) => {

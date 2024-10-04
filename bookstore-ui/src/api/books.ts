@@ -13,7 +13,6 @@ export const getBooks = async ({ search, page }: BookRequestType) => {
     urlParams.set("search", search);
   }
   const token = localStorage.getItem("token") ?? "";
-  console.log("token", token);
   return await fetch(`${booksUrl}?${urlParams.toString()}`, {
     method: "GET", // or 'POST', 'PUT', 'DELETE', etc.
     headers: {
