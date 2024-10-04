@@ -5,15 +5,20 @@ import { Books as BooksData } from "../../types/books";
 import { TextField } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { getBooks } from "src/api/books";
+import { useNavigate } from "react-router-dom";
 const Books = () => {
   const [booksData, setBookData] = useState<BooksData>();
   const [search, setSearch] = useState<string>("");
+  const navigate = useNavigate();
 
   const onSearch = (search: string) => {
     setSearch(search);
     getBooks({ search })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
+        navigate("/login");
       })
       .then((responseJson) => {
         setBookData(responseJson);
@@ -26,7 +31,10 @@ const Books = () => {
   const onPageClick = (page: number) => {
     getBooks({ search, page: `${page}` })
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
+        navigate("/login");
       })
       .then((responseJson) => {
         setBookData(responseJson);
@@ -39,7 +47,10 @@ const Books = () => {
   useEffect(() => {
     getBooks({})
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        }
+        navigate("/login");
       })
       .then((responseJson) => {
         setBookData(responseJson);
