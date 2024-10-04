@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@services/firebase";
 import { useNavigate } from "react-router-dom";
 import { createUser, getUserById } from "src/api/users";
-import { User } from "bookstore-shared/index";
+import { User } from "../../types/user";
 
 const Login = () => {
   const provider = new GoogleAuthProvider();

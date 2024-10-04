@@ -1,4 +1,4 @@
-import { User } from "bookstore-shared";
+import { User } from "../types/user";
 const usersUrl = `${process.env.REACT_APP_USER_API_URL}/users`;
 
 export const getUserById = async (userId: string) => {

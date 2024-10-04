@@ -1,4 +1,4 @@
-import { Book } from "bookstore-shared";
+import { Book } from "../../../types/book";
 
 interface BookListItemProps {
   book: Book;

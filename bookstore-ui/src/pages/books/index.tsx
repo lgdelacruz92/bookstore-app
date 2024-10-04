@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BookListItem } from "./components/bookListItem";
-import { Books as BooksData, Book } from "bookstore-shared";
+import { Book } from "../../types/book";
+import { Books as BooksData } from "../../types/books";
 import { TextField } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { getBooks } from "src/api/books";
