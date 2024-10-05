@@ -10,6 +10,7 @@ import NotFound from "@pages/notFound";
 import Login from "@pages/login";
 import ProtectedRoute from "@components/protectedRoute";
 import Books from "@pages/books/books";
+import Favorites from "@pages/favorites";
 
 function App() {
   const isLoggedIn = () => {
@@ -40,6 +41,7 @@ function App() {
             }
           >
             <Route path="books" element={<Books />} />
+            <Route path="favorites" element={<Favorites />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
