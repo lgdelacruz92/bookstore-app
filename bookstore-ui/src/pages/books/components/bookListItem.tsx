@@ -1,14 +1,19 @@
 import { HeartIcon } from "@components/icons/heartIcon";
 import { Book } from "../../../types/book";
 import { Tooltip } from "@radix-ui/themes";
-import { Favorite } from "src/types/favorite";
-import { createFavorite } from "src/api/favorites";
 
 interface BookListItemProps {
   book: Book;
+  onAddToFavoriteClick: (bookId: string) => void;
+  favorites: Set<string>;
 }
 
-export const BookListItem = ({ book, ...rest }: BookListItemProps) => {
+export const BookListItem = ({
+  book,
+  onAddToFavoriteClick,
+  favorites,
+  ...rest
+}: BookListItemProps) => {
   const { title, author, details, imgUrl, _id } = book;
   const backgroundImageStyle = {
     backgroundImage: `url(${imgUrl || ""})`,
@@ -16,18 +21,6 @@ export const BookListItem = ({ book, ...rest }: BookListItemProps) => {
     backgroundPosition: "center", // Centers the image
     backgroundRepeat: "no-repeat", // Prevents tiling of the image
     overflow: "hidden",
-  };
-
-  const addToFavorite = () => {
-    const userString = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    const userJson = JSON.parse(userString ?? "");
-    const favoriteData: Favorite = {
-      user_id: userJson.uid,
-      book_id: _id,
-    };
-    createFavorite(token ?? "", favoriteData);
   };
 
   return (
@@ -40,9 +33,13 @@ export const BookListItem = ({ book, ...rest }: BookListItemProps) => {
         <Tooltip content="add to favorites">
           <div
             className="absolute top-1 right-1 cursor-pointer"
-            onClick={addToFavorite}
+            onClick={() => onAddToFavoriteClick(_id)}
           >
-            <HeartIcon fill="none" stroke="gray" size="30" />
+            <HeartIcon
+              fill={`${favorites.has(_id) ? "red" : "none"}`}
+              stroke={`${favorites.has(_id) ? "red" : "gray"}`}
+              size="30"
+            />
           </div>
         </Tooltip>
         <div className="font-bold text-xl text-slate-800 pt-4">{title}</div>
