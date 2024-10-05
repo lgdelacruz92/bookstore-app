@@ -6,7 +6,7 @@ import { TextField } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { getBooks } from "src/api/books";
 import { useNavigate } from "react-router-dom";
-import Tooltip from "../../components/tooltip";
+import { Tooltip } from "@radix-ui/themes";
 const Books = () => {
   const [booksData, setBookData] = useState<BooksData>();
   const [search, setSearch] = useState<string>("");
@@ -63,7 +63,7 @@ const Books = () => {
 
   return (
     <div id="books-list" className="container mx-auto">
-      <Tooltip message="Type search filter">
+      <Tooltip content="Type search filter">
         <TextField.Root
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             onSearch(e.target.value);
