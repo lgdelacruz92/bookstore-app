@@ -10,16 +10,24 @@ const defaultLimit = 10;
 
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
-    // Extract query parameters for pagination and search
+    // Extract query parameters for pagination, search, and bookIds
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || defaultLimit;
     const skip = (page - 1) * limit;
     const search = req.query.search as string;
+    console.log(req.query.bookIds);
+    const bookIds = req.query.bookIds
+      ? JSON.parse(req.query.bookIds as string)
+      : null;
 
     let filter = {};
 
+    // If bookIds query parameter exists, filter by the provided array of book IDs
+    if (bookIds && Array.isArray(bookIds) && bookIds.length > 0) {
+      filter = { _id: { $in: bookIds } };
+    }
     // If search query exists, build a regex filter for title, author, or details
-    if (search) {
+    else if (search) {
       const regex = new RegExp(search, "i"); // 'i' for case-insensitive
       filter = {
         $or: [
