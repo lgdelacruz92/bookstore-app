@@ -10,11 +10,11 @@ import { verifyTokenMiddleware } from "../middlewares/verifyToken";
 
 const router = Router();
 
-router.get("/", verifyTokenMiddleware, getFavorites);
-router.get("/:bookId", verifyTokenMiddleware, findFavoriteById);
+router.get("/:userId", verifyTokenMiddleware, getFavorites);
+router.get("/:favoriteId", verifyTokenMiddleware, findFavoriteById);
 
 router.post("/", verifyTokenMiddleware, createFavorite);
 router.put("/update", verifyTokenMiddleware, updateFavorite);
-router.delete("/:bookId", verifyTokenMiddleware, deleteFavorite);
+router.delete("/:favoriteId", verifyTokenMiddleware, deleteFavorite);
 
 export default router;

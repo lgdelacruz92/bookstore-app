@@ -10,27 +10,19 @@ export const getFavorites = async (req: Request, res: Response) => {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || defaultLimit;
     const skip = (page - 1) * limit;
-    const search = req.query.search as string;
+    const { userId } = req.params;
+    console.log(userId);
+    if (!userId) {
+      res.status(400).json({ message: "missing userId" });
+      return;
+    }
 
     let filter = {};
 
-    // If search query exists, build a regex filter for title, author, or details
-    if (search) {
-      const regex = new RegExp(search, "i"); // 'i' for case-insensitive
-      filter = {
-        $or: [
-          { title: { $regex: regex } },
-          { author: { $regex: regex } },
-          { details: { $regex: regex } },
-        ],
-      };
-    }
-
-    // Fetch books with pagination and optional search filter
+    filter = { user_id: userId };
     const favorites = await Favorite.find(filter).skip(skip).limit(limit);
     const totalFavorites = await Favorite.countDocuments(filter); // Count total filtered books
 
-    // Respond with paginated and filtered book data
     res.json({
       totalFavorites,
       totalPages: Math.ceil(totalFavorites / limit),
