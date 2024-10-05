@@ -1,0 +1,31 @@
+{
+  "name": "bookstore-favorites",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon src/index.ts"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "csv-parser": "^3.0.0",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
