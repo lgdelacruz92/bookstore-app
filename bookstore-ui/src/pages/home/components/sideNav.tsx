@@ -27,6 +27,7 @@ const SideNav = () => {
   const onNavClick = (href: string) => {
     if (href === "/login") {
       localStorage.setItem("token", "");
+      localStorage.setItem("user", "");
     }
     navigate(href);
   };

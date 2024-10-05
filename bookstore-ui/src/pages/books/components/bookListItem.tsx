@@ -1,19 +1,33 @@
 import { HeartIcon } from "@components/icons/heartIcon";
 import { Book } from "../../../types/book";
 import { Tooltip } from "@radix-ui/themes";
+import { Favorite } from "src/types/favorite";
+import { createFavorite } from "src/api/favorites";
 
 interface BookListItemProps {
   book: Book;
 }
 
 export const BookListItem = ({ book, ...rest }: BookListItemProps) => {
-  const { title, author, details, imgUrl } = book;
+  const { title, author, details, imgUrl, _id } = book;
   const backgroundImageStyle = {
     backgroundImage: `url(${imgUrl || ""})`,
     backgroundSize: "cover", // Ensures the image covers the container
     backgroundPosition: "center", // Centers the image
     backgroundRepeat: "no-repeat", // Prevents tiling of the image
     overflow: "hidden",
+  };
+
+  const addToFavorite = () => {
+    const userString = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    const userJson = JSON.parse(userString ?? "");
+    const favoriteData: Favorite = {
+      user_id: userJson.uid,
+      book_id: _id,
+    };
+    createFavorite(token ?? "", favoriteData);
   };
 
   return (
@@ -24,7 +38,10 @@ export const BookListItem = ({ book, ...rest }: BookListItemProps) => {
     >
       <div className="bg-gray-300 p-2 bg-opacity-30 relative">
         <Tooltip content="add to favorites">
-          <div className="absolute top-1 right-1 cursor-pointer">
+          <div
+            className="absolute top-1 right-1 cursor-pointer"
+            onClick={addToFavorite}
+          >
             <HeartIcon fill="none" stroke="gray" size="30" />
           </div>
         </Tooltip>

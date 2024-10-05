@@ -15,6 +15,7 @@ const Login = () => {
       const result = await signInWithPopup(auth, provider);
       const token = await result.user.getIdToken();
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(result.user));
 
       const user = result.user;
       const userData: User = {
