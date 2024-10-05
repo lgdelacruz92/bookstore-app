@@ -5,7 +5,7 @@ import { auth } from "@services/firebase";
 import { useNavigate } from "react-router-dom";
 import { createUser, getUserById } from "src/api/users";
 import { User } from "../../types/user";
-import { Box, Button, Card, Container, Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Card, Heading, Flex, Text } from "@radix-ui/themes";
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
