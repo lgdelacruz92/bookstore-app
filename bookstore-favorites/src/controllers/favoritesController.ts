@@ -11,7 +11,6 @@ export const getFavorites = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || defaultLimit;
     const skip = (page - 1) * limit;
     const { userId } = req.params;
-    console.log(userId);
     if (!userId) {
       res.status(400).json({ message: "missing userId" });
       return;

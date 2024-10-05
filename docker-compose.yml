@@ -37,6 +37,16 @@ services:
     env_file:
       - ./bookstore-users/.env
 
+    # Favorites service (bookstore-favorites)
+  bookstore-favorites:
+    build: ./bookstore-favorites
+    ports:
+      - "5004:5004"
+    networks:
+      - bookstore-network
+    env_file:
+      - ./bookstore-favorites/.env
+
   # Books service (bookstore-books)
   bookstore-books:
     build: ./bookstore-books
