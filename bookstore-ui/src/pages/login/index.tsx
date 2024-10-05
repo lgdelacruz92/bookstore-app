@@ -29,7 +29,7 @@ const Login = () => {
         await createUser(token, userData);
       }
 
-      navigate("/books");
+      navigate("/home/books");
     } catch (error) {
       console.error("Login Error:", error);
     }

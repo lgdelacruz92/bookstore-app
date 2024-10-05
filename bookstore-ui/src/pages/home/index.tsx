@@ -1,17 +1,17 @@
-import BooksList from "./components/booksList";
+import { Outlet } from "react-router-dom";
 import SideNav from "./components/sideNav";
 
-const Books = () => {
+const Home = () => {
   return (
     <div className="flex">
       <div className="py-8 px-4 w-64 border-solid border-2 border-slate-200 shadow">
         <SideNav></SideNav>
       </div>
       <div className="p-8">
-        <BooksList />
+        <Outlet />
       </div>
     </div>
   );
 };
 
-export default Books;
+export default Home;

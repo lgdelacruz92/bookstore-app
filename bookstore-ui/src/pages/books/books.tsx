@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { BookListItem } from "../components/bookListItem";
-import { Book } from "../../../types/book";
-import { Books as BooksData } from "../../../types/books";
+import { BookListItem } from "./components/bookListItem";
+import { Book } from "../../types/book";
+import { Books as BooksData } from "../../types/books";
 import { Heading, TextField } from "@radix-ui/themes";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { getBooks } from "src/api/books";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@radix-ui/themes";
 
-const BooksList = () => {
+const Books = () => {
   const [booksData, setBookData] = useState<BooksData>();
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
@@ -113,4 +113,4 @@ const BooksList = () => {
   );
 };
 
-export default BooksList;
+export default Books;

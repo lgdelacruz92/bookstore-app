@@ -5,10 +5,11 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Books from "@pages/books";
+import Home from "@pages/home";
 import NotFound from "@pages/notFound";
 import Login from "@pages/login";
 import ProtectedRoute from "@components/protectedRoute";
+import Books from "@pages/books/books";
 
 function App() {
   const isLoggedIn = () => {
@@ -22,21 +23,24 @@ function App() {
             path="/"
             element={
               isLoggedIn() ? (
-                <Navigate to="/books" replace />
+                <Navigate to="/home/books" replace />
               ) : (
                 <Navigate to="/login" replace />
               )
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Navigate to="/home/books" replace />} />
           <Route
-            path="/books"
+            path="/home"
             element={
               <ProtectedRoute>
-                <Books />
+                <Home />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route path="books" element={<Books />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

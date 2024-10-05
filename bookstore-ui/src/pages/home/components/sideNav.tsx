@@ -34,10 +34,10 @@ const SideNav = () => {
     <Box>
       <Heading>Site Links</Heading>
       <ul className="mt-4">
-        <SideNavLink href="/books" onNavClick={onNavClick}>
+        <SideNavLink href="/home/books" onNavClick={onNavClick}>
           Books
         </SideNavLink>
-        <SideNavLink href="/favorites" onNavClick={onNavClick}>
+        <SideNavLink href="/home/favorites" onNavClick={onNavClick}>
           Favorites
         </SideNavLink>
         <SideNavLink href="/login" onNavClick={onNavClick}>
