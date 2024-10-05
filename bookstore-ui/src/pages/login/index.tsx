@@ -5,7 +5,7 @@ import { auth } from "@services/firebase";
 import { useNavigate } from "react-router-dom";
 import { createUser, getUserById } from "src/api/users";
 import { User } from "../../types/user";
-import { Box, Card, Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Card, Container, Flex, Text } from "@radix-ui/themes";
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
@@ -41,23 +41,22 @@ const Login = () => {
       <Box maxWidth="240px" className="mx-auto mt-20">
         <Card>
           <Box>
-            <Box>
-              <h1 className="text-2xl font-extrabold text-slate-900 text-center">
+            <Flex className="!justify-center">
+              <Text className="text-2xl font-extrabold text-slate-900 text-center">
                 Login
-              </h1>
-            </Box>
-            <Box>
-              <Flex>
-                <button
-                  className="font-semibold text-slate-900 shadow-sm border-2 border-solid border-slate-900 rounded-2xl px-4 mt-4"
-                  onClick={handleLogin}
-                >
+              </Text>
+            </Flex>
+            <Box className="mt-4">
+              <Flex className="!justify-center">
+                <Button className="!rounded-full" onClick={handleLogin}>
                   Login with Google
-                </button>
+                </Button>
               </Flex>
             </Box>
           </Box>
-          <Text className="mt-8 text-sm">Login with your gmail account</Text>
+          <Flex className="!justify-center mt-4">
+            <Text className="text-sm">Login with your gmail account</Text>
+          </Flex>
         </Card>
       </Box>
     </div>
