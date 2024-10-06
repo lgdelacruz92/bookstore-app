@@ -148,7 +148,7 @@ const Books = () => {
               onSearch(e.target.value);
             }}
             className="my-4"
-            placeholder="Search the books..."
+            placeholder="Author,Title,Details"
           >
             <TextField.Slot>
               <MagnifyingGlassIcon height="16" width="16" />

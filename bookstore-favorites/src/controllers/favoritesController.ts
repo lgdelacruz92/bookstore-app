@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import Favorite from "../models/favorite";
 
-const defaultLimit = 10;
+const defaultLimit = 500;
 
 export const getFavorites = async (req: Request, res: Response) => {
   try {

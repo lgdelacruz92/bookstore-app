@@ -17,9 +17,9 @@ export const BookListItem = ({
   const { title, author, details, imgUrl, _id } = book;
   const backgroundImageStyle = {
     backgroundImage: `url(${imgUrl || ""})`,
-    backgroundSize: "cover", // Ensures the image covers the container
-    backgroundPosition: "center", // Centers the image
-    backgroundRepeat: "no-repeat", // Prevents tiling of the image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     overflow: "hidden",
   };
 

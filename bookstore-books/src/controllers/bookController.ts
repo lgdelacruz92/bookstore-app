@@ -23,7 +23,19 @@ export const getAllBooks = async (req: Request, res: Response) => {
 
     // If bookIds query parameter exists, filter by the provided array of book IDs
     if (bookIds && Array.isArray(bookIds) && bookIds.length > 0) {
-      filter = { _id: { $in: bookIds } };
+      if (search) {
+        const regex = new RegExp(search, "i"); // 'i' for case-insensitive
+        filter = {
+          _id: { $in: bookIds }, // Search within bookIds
+          $or: [
+            { title: { $regex: regex } },
+            { author: { $regex: regex } },
+            { details: { $regex: regex } },
+          ],
+        };
+      } else {
+        filter = { _id: { $in: bookIds } };
+      }
     }
     // If search query exists, build a regex filter for title, author, or details
     else if (search) {
