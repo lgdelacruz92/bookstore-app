@@ -158,7 +158,7 @@ const Books = () => {
           </TextField.Root>
         </Tooltip>
 
-        <div className="grid grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 gap-0 gap-y-4 lg:grid-cols-6 lg:gap-4">
           {booksData &&
             booksData?.books?.map((item: Book, i: number) => {
               return (

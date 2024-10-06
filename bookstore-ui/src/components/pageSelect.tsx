@@ -18,7 +18,7 @@ export const PageSelect: React.FC<PageSelectProps> = ({
   }
 
   return (
-    <div className="flex row mt-4 gap-x-8">
+    <div className="flex row mt-4 gap-x-2 lg:gap-x-8">
       {new Array(endPage - startPage + 1).fill("").map((_, index) => {
         const pageNumber = startPage + index;
         return (
