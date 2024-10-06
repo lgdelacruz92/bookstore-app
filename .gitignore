@@ -28,3 +28,4 @@ node_modules/
 *.seed.js
 bookstoreAccountKey.json
 */books.js
+secrets/
