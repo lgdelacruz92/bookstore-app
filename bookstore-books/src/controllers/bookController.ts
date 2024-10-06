@@ -15,7 +15,6 @@ export const getAllBooks = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || defaultLimit;
     const skip = (page - 1) * limit;
     const search = req.query.search as string;
-    console.log(req.query.bookIds);
     const bookIds = req.query.bookIds
       ? JSON.parse(req.query.bookIds as string)
       : null;
