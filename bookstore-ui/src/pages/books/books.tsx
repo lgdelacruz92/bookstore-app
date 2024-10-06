@@ -69,7 +69,8 @@ const Books = () => {
 
   const onSearch = (search: string) => {
     setSearch(search);
-    getBooks({ search, page: `${page}` })
+
+    getBooks({ search, page: "1" })
       .then((res) => {
         if (res.ok) {
           return res.json();

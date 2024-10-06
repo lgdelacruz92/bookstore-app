@@ -15,7 +15,7 @@ export const BookListItem = ({
   favorites,
   ...rest
 }: BookListItemProps) => {
-  const { title, author, details, imgUrl, _id } = book;
+  const { title, author, imgUrl, _id } = book;
   const backgroundImageStyle = {
     backgroundImage: `url(${imgUrl || ""})`,
     backgroundSize: "cover",
@@ -40,7 +40,10 @@ export const BookListItem = ({
         <Tooltip content="add to favorites">
           <div
             className="absolute top-1 right-1 cursor-pointer"
-            onClick={() => onAddToFavoriteClick(_id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToFavoriteClick(_id);
+            }}
           >
             <HeartIcon
               fill={`${favorites.has(_id) ? "red" : "none"}`}
@@ -51,7 +54,6 @@ export const BookListItem = ({
         </Tooltip>
         <div className="font-bold text-xl text-slate-800 pt-4">{title}</div>
         <div className="font-bold italic text-slate-700 mt-2">{author}</div>
-        <div className="mt-2 pb-2 text-slate-800">{details}</div>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const Details = () => {
     <div>
       {book ? (
         <Flex className="gap-x-4">
-          <Box>
+          <Box className="flex-1">
             <Heading className="text-left">{book.title}</Heading>
             <div className="text-xl mt-4 text-left">Author: {book.author}</div>
             <div className="mt-4">
@@ -33,7 +33,9 @@ const Details = () => {
               <div className="text-xl mt-4 text-left">{book.details}</div>
             </div>
           </Box>
-          <img src={book.imgUrl} alt={`${book.title}`} />
+          <Box className="flex-1">
+            <img src={book.imgUrl} alt={`${book.title}`} />
+          </Box>
         </Flex>
       ) : null}
     </div>

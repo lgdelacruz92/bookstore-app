@@ -13,6 +13,9 @@ interface Book {
 const results: Book[] = [];
 
 export const getBooks = async (): Promise<Array<Book>> => {
+  const res = await fetch("https://loripsum.net/api");
+  const text = await res.text();
+  const sanitizedText = text.replace(/<p>/g, "").replace(/<\/p>/g, "");
   return new Promise((res, rej) => {
     fs.createReadStream(path.join(process.cwd(), "db/seeds/books.csv")) // Replace with your CSV file path
       .pipe(csv())
@@ -21,7 +24,7 @@ export const getBooks = async (): Promise<Array<Book>> => {
         results.push({
           title: data.title,
           author: data.author,
-          details: `${genre};${height};${publisher}`,
+          details: `${sanitizedText}`,
           imgUrl: defaultImgURL,
         });
       })
@@ -34,4 +37,4 @@ export const getBooks = async (): Promise<Array<Book>> => {
   });
 };
 
-// getBooks().then((res) => console.log(res));
+getBooks().then((res) => console.log(res));

@@ -20,12 +20,14 @@ const useFavorites = () => {
   const [favorites, setFavorites] = useState<FavoritesType>();
   const [books, setBooks] = useState<Books>(defaultBooks);
   const [search, setSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
 
   const onSearch = (search: string) => {
+    if (favorites && favorites.favorites.length === 0) {
+      return;
+    }
     setSearch(search);
     const bookIds = favorites?.favorites.map((f: Favorite) => f.book_id);
-    getBooks({ search, page: `${page}`, bookIds: JSON.stringify(bookIds) })
+    getBooks({ search, page: "1", bookIds: JSON.stringify(bookIds) })
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -40,7 +42,6 @@ const useFavorites = () => {
   };
 
   const onPageClick = (page: number) => {
-    setPage(page);
     const bookIds = favorites?.favorites.map((f: Favorite) => f.book_id);
     getBooks({ search, page: `${page}`, bookIds: JSON.stringify(bookIds) })
       .then((res) => {
@@ -58,6 +59,10 @@ const useFavorites = () => {
 
   useEffect(() => {
     if (!favorites) {
+      return;
+    }
+
+    if (favorites.favorites.length === 0) {
       return;
     }
 
