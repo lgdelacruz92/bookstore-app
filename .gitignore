@@ -27,3 +27,4 @@ node_modules/
 *.migration.js
 *.seed.js
 bookstoreAccountKey.json
+*/books.js
