@@ -1,5 +1,5 @@
 import { Box, Flex, Heading } from "@radix-ui/themes";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getBookById } from "src/api/books";
 import { Book } from "src/types/book";
