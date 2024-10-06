@@ -18,7 +18,7 @@ export const FavoriteListItem: React.FC<FavoriteListItemProps> = ({ book }) => {
   const navigate = useNavigate();
 
   const onBookClick = () => {
-    navigate(`/details/${_id}`);
+    navigate(`/home/details/${_id}`);
   };
 
   return (

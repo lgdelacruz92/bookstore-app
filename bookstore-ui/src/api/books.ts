@@ -18,7 +18,18 @@ export const getBooks = async ({ search, page, bookIds }: BookRequestType) => {
   }
   const token = localStorage.getItem("token") ?? "";
   return await fetch(`${booksUrl}?${urlParams.toString()}`, {
-    method: "GET", // or 'POST', 'PUT', 'DELETE', etc.
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getBookById = async (bookId: string) => {
+  const token = localStorage.getItem("token") ?? "";
+  return await fetch(`${booksUrl}/${bookId}`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
