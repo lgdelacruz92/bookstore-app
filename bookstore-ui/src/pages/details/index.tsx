@@ -1,12 +1,14 @@
-import { Box, Flex, Heading } from "@radix-ui/themes";
+import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import { Box, Flex, Heading, Tooltip } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getBookById } from "src/api/books";
 import { Book } from "src/types/book";
 
 const Details = () => {
   const { bookId } = useParams();
   const [book, setBook] = useState<Book>();
+  const navigate = useNavigate();
   useEffect(() => {
     if (!bookId) {
       return;
@@ -23,6 +25,18 @@ const Details = () => {
   }, [bookId]);
   return (
     <div>
+      <div className="flex justify-start mb-8">
+        <Tooltip content="back">
+          <button
+            onClick={() => {
+              navigate(-1);
+            }}
+            className="border-solid border-2 rounded-full"
+          >
+            <ChevronLeftIcon width={24} height={24} />
+          </button>
+        </Tooltip>
+      </div>
       {book ? (
         <Flex className="gap-x-4">
           <Box className="flex-1">

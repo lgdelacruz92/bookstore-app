@@ -14,6 +14,7 @@ import {
 } from "src/api/favorites";
 import { Favorite } from "src/types/favorite";
 import { Favorites } from "src/types/favorites";
+import { PageSelect } from "@components/pageSelect";
 
 const useFavorites = () => {
   const [favoritesObject, setFavoritesObject] = useState<Favorites>();
@@ -142,7 +143,7 @@ const Books = () => {
     <div>
       <Heading>Books library</Heading>
 
-      <div id="books-list" className="container mx-auto">
+      <div id="books-list" className="mx-auto">
         <Tooltip content="Type search filter">
           <TextField.Root
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -158,33 +159,26 @@ const Books = () => {
         </Tooltip>
 
         <div className="grid grid-cols-6 gap-4">
-          {booksData?.books?.map((item: Book, i: number) => {
-            return (
-              <BookListItem
-                key={`${item.title}-${i}`}
-                book={item}
-                onAddToFavoriteClick={addToFavorite}
-                favorites={favoriteBooks}
-              ></BookListItem>
-            );
-          })}
+          {booksData &&
+            booksData?.books?.map((item: Book, i: number) => {
+              return (
+                <BookListItem
+                  key={`${item.title}-${i}`}
+                  book={item}
+                  onAddToFavoriteClick={addToFavorite}
+                  favorites={favoriteBooks}
+                ></BookListItem>
+              );
+            })}
         </div>
         <div className="flex row mt-4">
-          {new Array(booksData?.totalPages).fill("").map((_, index) => {
-            return (
-              <button
-                key={`page-button-${index}`}
-                onClick={() => onPageClick(index + 1)}
-                className={`${
-                  booksData && index === parseInt(booksData.currentPage) - 1
-                    ? "bg-slate-500 text-white rounded"
-                    : ""
-                } p-2`}
-              >
-                {index + 1}
-              </button>
-            );
-          })}
+          {booksData && (
+            <PageSelect
+              totalPages={parseInt(booksData.totalPages)}
+              currentPage={parseInt(booksData.currentPage)}
+              onPageClick={onPageClick}
+            />
+          )}
         </div>
       </div>
     </div>

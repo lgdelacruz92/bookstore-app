@@ -9,6 +9,7 @@ import { Books } from "src/types/books";
 import { Favorite } from "src/types/favorite";
 import { Favorites as FavoritesType } from "src/types/favorites";
 import { FavoriteListItem } from "./components/favoriteListItem";
+import { PageSelect } from "@components/pageSelect";
 
 const useFavorites = () => {
   const defaultBooks = {
@@ -122,31 +123,24 @@ const Favorites: React.FC<FavoritesProps> = () => {
         </Tooltip>
 
         <div className="grid grid-cols-6 gap-4">
-          {books.books.map((item: Book, i: number) => {
-            return (
-              <FavoriteListItem
-                key={`${item.title}-${i}`}
-                book={item}
-              ></FavoriteListItem>
-            );
-          })}
+          {books &&
+            books.books.map((item: Book, i: number) => {
+              return (
+                <FavoriteListItem
+                  key={`${item.title}-${i}`}
+                  book={item}
+                ></FavoriteListItem>
+              );
+            })}
         </div>
         <div className="flex row mt-4">
-          {new Array(books.totalPages).fill("").map((_, index) => {
-            return (
-              <button
-                key={`page-button-${index}`}
-                onClick={() => onPageClick(index + 1)}
-                className={`${
-                  books && index === parseInt(books.currentPage) - 1
-                    ? "bg-slate-500 text-white rounded"
-                    : ""
-                } p-2`}
-              >
-                {index + 1}
-              </button>
-            );
-          })}
+          {books ? (
+            <PageSelect
+              totalPages={parseInt(books.totalPages)}
+              currentPage={parseInt(books.currentPage)}
+              onPageClick={onPageClick}
+            />
+          ) : null}
         </div>
       </div>
     </div>
