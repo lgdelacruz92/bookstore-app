@@ -11,6 +11,7 @@ import Login from "@pages/login";
 import ProtectedRoute from "@components/protectedRoute";
 import Books from "@pages/books/books";
 import Favorites from "@pages/favorites";
+import Details from "@pages/details";
 
 function App() {
   const isLoggedIn = () => {
@@ -42,6 +43,7 @@ function App() {
           >
             <Route path="books" element={<Books />} />
             <Route path="favorites" element={<Favorites />} />
+            <Route path="details/:bookId" element={<Details />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
