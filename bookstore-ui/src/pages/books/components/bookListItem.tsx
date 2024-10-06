@@ -1,6 +1,7 @@
 import { HeartIcon } from "@components/icons/heartIcon";
 import { Book } from "../../../types/book";
 import { Tooltip } from "@radix-ui/themes";
+import { useNavigate } from "react-router-dom";
 
 interface BookListItemProps {
   book: Book;
@@ -22,12 +23,18 @@ export const BookListItem = ({
     backgroundRepeat: "no-repeat",
     overflow: "hidden",
   };
+  const navigate = useNavigate();
+
+  const onBookClick = () => {
+    navigate(`/home/details/${_id}`);
+  };
 
   return (
     <div
       {...rest}
       className="bg-slate-500 h-[300px] rounded-lg"
       style={backgroundImageStyle}
+      onClick={onBookClick}
     >
       <div className="bg-gray-300 p-2 bg-opacity-30 relative">
         <Tooltip content="add to favorites">
