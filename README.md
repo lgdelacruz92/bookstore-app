@@ -1,4 +1,9 @@
 # Documentation
+
+# Video Demo of The App In Use
+
+https://www.loom.com/share/0a0c5e3fc7b84c6895b2021684f19839?sid=879c3834-e129-45cd-b7fd-18684cd7e62b
+
 ## How to run the services
 
 1 .   extract `bookstore-app.zip`
