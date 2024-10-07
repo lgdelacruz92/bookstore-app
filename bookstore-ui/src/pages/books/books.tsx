@@ -70,7 +70,7 @@ const Books = () => {
 
   const onSearch = (search: string) => {
     setSearch(search);
-
+    setPage(1);
     getBooks({ search, page: "1" })
       .then((res) => {
         if (res.ok) {

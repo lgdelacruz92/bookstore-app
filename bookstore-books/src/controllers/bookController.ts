@@ -27,11 +27,7 @@ export const getAllBooks = async (req: Request, res: Response) => {
         const regex = new RegExp(search, "i"); // 'i' for case-insensitive
         filter = {
           _id: { $in: bookIds }, // Search within bookIds
-          $or: [
-            { title: { $regex: regex } },
-            { author: { $regex: regex } },
-            { details: { $regex: regex } },
-          ],
+          $or: [{ title: { $regex: regex } }, { author: { $regex: regex } }],
         };
       } else {
         filter = { _id: { $in: bookIds } };
@@ -41,11 +37,7 @@ export const getAllBooks = async (req: Request, res: Response) => {
     else if (search) {
       const regex = new RegExp(search, "i"); // 'i' for case-insensitive
       filter = {
-        $or: [
-          { title: { $regex: regex } },
-          { author: { $regex: regex } },
-          { details: { $regex: regex } },
-        ],
+        $or: [{ title: { $regex: regex } }, { author: { $regex: regex } }],
       };
     }
 
